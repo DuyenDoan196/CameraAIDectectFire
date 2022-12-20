@@ -1,19 +1,23 @@
 {% extends 'Home/base.html' %}
 {% block home %}
-<form class="form">
-    <div class="main">
-        <img src="{% url 'Home:camera' %}" alt="" style="width: 900px; height: 450px">
-    </div>
-    <div class="error">
-
-    </div>
-    <div class="cam">
-        <div class="col-1"></div>
-        <div class="col-2"></div>
-        <div class="col-3"></div>
-        <div class="cam-4">
-            <h1></h1>
+    <form class="form">
+        {% load static %}
+        <script src="{% static 'js/signalR.js' %}"></script>
+        {% load static %}
+        <script src="{% static 'js/socket.js' %}"></script>
+        <div class="main">
+            <img src="{% url 'Home:camera' %}" alt="" style="width: 900px; height: 450px">
         </div>
-    </div>
-</form>
+        <div class="error">
+
+        </div>
+        <div class="cam">
+            <div class="col-1"></div>
+            <div class="col-2"></div>
+            <div class="col-3"></div>
+            <div class="cam-4">
+                <h1></h1>
+            </div>
+        </div>
+    </form>
 {% endblock %}
