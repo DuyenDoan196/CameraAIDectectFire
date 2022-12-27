@@ -1,23 +1,147 @@
 {% extends 'Home/base.html' %}
 {% block home %}
-    <form class="form">
-        {% load static %}
-        <script src="{% static 'js/signalR.js' %}"></script>
-        {% load static %}
-        <script src="{% static 'js/socket.js' %}"></script>
-        <div class="main">
-            <img src="{% url 'Home:camera' %}" alt="" style="width: 900px; height: 450px">
-        </div>
-        <div class="error">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="avatar">
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+            <ul>
+                <li class="active_link">
+                    <a href="#"><i class="fas fa-tint"></i></a>
+                </li>
 
+                <li>
+                    <a href="#"><i class="fas fa-book-reader"></i></a>
+                </li>
+                <div class="spacer"></div>
+                <li>
+                    <a href="#"><i class="fas fa-cog"></i></a>
+                </li>
+                <li class="active_link">
+                    <a href="#"><i class="fas fa-power-off"></i></a>
+                </li>
+            </ul>
         </div>
-        <div class="cam">
-            <div class="col-1"></div>
-            <div class="col-2"></div>
-            <div class="col-3"></div>
-            <div class="cam-4">
-                <h1></h1>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="row">
+                <div class="card card1">
+
+                    <div class="card1_title_wrapper">
+                        <h3 class="car1_title">Camera 1</h3>
+                    </div>
+
+                    <!-- hiển thị cam -->
+                    <div class="main">
+                        <img src="{% url 'Home:camera_a' %}" alt="" style="width: 900px; height: 450px">
+                    </div>
+
+                </div>
+
+                <div class="card card2">
+                    <!-- cục số 2: hiện cảnh báo -->
+                    <div id="img" style="display: block; margin-left: auto; margin-right: auto; ">
+                        <img src="Home/static/images/notify.png" alt="" style="width: 32%; text-align: center">
+                    </div>
+                    <div>
+                        <p>Address: 34, Nguyen Van Nam Stress, Thu Duc City</p>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row row2">
+                <div class="card card3">
+                    <div class="img1">
+                        <h3 class="car1_title">CAMERA 2</h3>
+                        <video width="250" controls="false" autoplay muted loop id="videoId" playsinline
+                               style="pointer-events: none;">
+                            <source src="Home/data/mock/c.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="img2">
+                        <h3 class="car1_title">CAMERA 3</h3>
+                        <video width="250" controls="false" autoplay muted loop id="videoId" playsinline
+                               style="pointer-events: none;">
+                            <source src="Home/data/mock/c.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="img3">
+                        <h3 class="car1_title">CAMERA 4</h3>
+                        <video width="250" controls="false" autoplay muted loop id="videoId" playsinline
+                               style="pointer-events: none;">
+                            <source src="Home/data/mock/c.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                </div>
+
+                <div class="card card4">
+                    <div class="card1_title_wrapper">
+                        <h1 class="car1_title">Contact to:</h1>
+
+                    </div>
+                    <div class="card1_table_wrapper">
+                        <table class="card1_table">
+                            <thead class="card1_table_head">
+                            <tr>
+                                <th>Person</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody class="card1_table_tbody">
+                            <tr>
+                                <td><i class="positiveIcon fas fa-check"></i> PCCC</td>
+                                <td>
+                                    <button class="btn btn-secondary">Called</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="negativeIcon fas fa-times"></i> Stuff
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary">Connecting</button>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+        <!-- /#page-content-wrapper -->
+    </div>
+
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+
+    <script>
+        function toggleMute() {
+
+            var video = document.getElementById("videoId");
+
+            if (video.muted) {
+                video.muted = false;
+            } else {
+                debugger;
+                video.muted = true;
+                video.play()
+            }
+
+        }
+
+        $(document).ready(function () {
+            setTimeout(toggleMute, 3000);
+        })
+    </script>
+
 {% endblock %}

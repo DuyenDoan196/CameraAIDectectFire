@@ -105,7 +105,7 @@ class Darknet(nn.Module):
                 x2 = outputs[ind - 1]
                 x = x1 + x2
                 outputs[ind] = x
-            elif block['type'] == 'yolo':
+            elif block['type'] == 'weight':
                 boxes = self.models[ind](x, nms_thresh)
                 out_boxes.append(boxes)
             else:
@@ -179,7 +179,7 @@ class Darknet(nn.Module):
                 prev_stride = out_strides[ind - 1]
                 out_strides.append(prev_stride)
                 models.append(EmptyModule())
-            elif block['type'] == 'yolo':
+            elif block['type'] == 'weight':
                 yolo_layer = YoloLayer()
                 anchors = block['anchors'].split(',')
                 anchor_mask = block['mask'].split(',')
@@ -228,7 +228,7 @@ class Darknet(nn.Module):
                 pass
             elif block['type'] == 'shortcut':
                 pass
-            elif block['type'] == 'yolo':
+            elif block['type'] == 'weight':
                 pass
             else:
                 print('unknown type %s' % (block['type']))
@@ -421,7 +421,7 @@ def print_cfg(blocks):
             out_widths.append(prev_width)
             out_heights.append(prev_height)
             out_filters.append(prev_filters)
-        elif block['type'] in ['region', 'yolo']:
+        elif block['type'] in ['region', 'weight']:
             print('%5d %-6s' % (ind, 'detection'))
             out_widths.append(prev_width)
             out_heights.append(prev_height)
